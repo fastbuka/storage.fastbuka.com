@@ -7,7 +7,7 @@
 </head>
 <body>
 <rapi-doc
-    spec-url="{{ config('app.docs') }}"
+    spec-url="{{ route("scribe.openapi") }}"
     render-style="read"
     allow-try="true"
 >

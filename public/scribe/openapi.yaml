@@ -5,25 +5,8 @@ info:
   version: 1.0.0
 servers:
   -
-    url: 'http://localhost:8000'
+    url: 'https://storage.fastbuka.com'
 paths:
-  /api/api:
-    get:
-      summary: ''
-      operationId: getApiApi
-      description: ''
-      parameters: []
-      responses:
-        200:
-          description: ''
-          content:
-            text/plain:
-              schema:
-                type: string
-                example: 'BASE_URL: http://localhost:8000'
-      tags:
-        - Endpoints
-      security: []
   '/api/v1/storage/{user_uuid}':
     get:
       summary: 'Get all storage'
@@ -68,7 +51,7 @@ paths:
         in: path
         name: user_uuid
         description: ''
-        example: 34e3aae3-7933-3eb8-ac64-18a821a2434a
+        example: 4676e9a7-7ecd-3adb-8670-a1705d315d5c
         required: true
         schema:
           type: string
@@ -87,7 +70,7 @@ paths:
         in: path
         name: storage_uuid
         description: ''
-        example: 32b83174-94b9-35cf-8e24-be209d2c25dd
+        example: 12780c55-b4dd-34dc-9ce5-9bb8c469b1c4
         required: true
         schema:
           type: string
@@ -100,9 +83,6 @@ paths:
         schema:
           type: string
 tags:
-  -
-    name: Endpoints
-    description: ''
   -
     name: 'Storage Endpoints'
     description: "\nEndpoints for managing storage"

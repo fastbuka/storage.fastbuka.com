@@ -5,74 +5,16 @@
             "key": "baseUrl",
             "type": "string",
             "name": "string",
-            "value": "http:\/\/localhost:8000"
+            "value": "https:\/\/storage.fastbuka.com"
         }
     ],
     "info": {
         "name": "Storage",
-        "_postman_id": "6371b615-3a3d-4236-88ae-37bd8869f5f6",
+        "_postman_id": "e810eb5a-a4b8-46eb-bd79-eefd670ac22f",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
     "item": [
-        {
-            "name": "Endpoints",
-            "description": "",
-            "item": [
-                {
-                    "name": "GET api\/api",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/api",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/api"
-                        },
-                        "method": "GET",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
-                    },
-                    "response": [
-                        {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "http:\/\/localhost:3000"
-                                },
-                                {
-                                    "key": "access-control-allow-credentials",
-                                    "value": "true"
-                                }
-                            ],
-                            "code": 200,
-                            "body": "BASE_URL: http:\/\/localhost:8000",
-                            "name": ""
-                        }
-                    ]
-                }
-            ]
-        },
         {
             "name": "Storage Endpoints",
             "description": "\nEndpoints for managing storage",
@@ -89,7 +31,7 @@
                                 {
                                     "id": "user_uuid",
                                     "key": "user_uuid",
-                                    "value": "34e3aae3-7933-3eb8-ac64-18a821a2434a",
+                                    "value": "4676e9a7-7ecd-3adb-8670-a1705d315d5c",
                                     "description": ""
                                 }
                             ]
@@ -124,7 +66,7 @@
                                 },
                                 {
                                     "key": "access-control-allow-origin",
-                                    "value": "http:\/\/localhost:3000"
+                                    "value": "https:\/\/fastbuka.com"
                                 },
                                 {
                                     "key": "access-control-allow-credentials",
@@ -185,7 +127,7 @@
                                 {
                                     "id": "storage_uuid",
                                     "key": "storage_uuid",
-                                    "value": "32b83174-94b9-35cf-8e24-be209d2c25dd",
+                                    "value": "12780c55-b4dd-34dc-9ce5-9bb8c469b1c4",
                                     "description": ""
                                 },
                                 {
