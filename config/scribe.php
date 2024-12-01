@@ -178,7 +178,7 @@ INTRO
     // - 'logo' => '../img/logo.png' // for `static` type (output folder is public/docs)
     // - 'logo' => 'img/logo.png' // for `laravel` type
     'logo' => true,
-    'logo' => 'images/logo.png',
+    'logo' => 'images/logo.jpg',
 
 
     // Customize the "Last updated" value displayed in the docs by specifying tokens and formats.

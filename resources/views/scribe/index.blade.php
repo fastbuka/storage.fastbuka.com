@@ -11,7 +11,7 @@
     render-style="read"
     allow-try="true"
 >
-            <img slot="logo" src="images/logo.png"/>
+            <img slot="logo" src="images/logo.jpg"/>
     </rapi-doc>
 </body>
 </html>

@@ -10,23 +10,23 @@
     ],
     "info": {
         "name": "Storage",
-        "_postman_id": "6e6c14b2-0e3d-42c1-bf25-3a9d52d1c9d4",
+        "_postman_id": "6371b615-3a3d-4236-88ae-37bd8869f5f6",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
     "item": [
         {
-            "name": "Storage Endpoints",
-            "description": "\nEndpoints for managing storage",
+            "name": "Endpoints",
+            "description": "",
             "item": [
                 {
-                    "name": "Get all storage",
+                    "name": "GET api\/api",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/v1\/storage",
+                            "path": "api\/api",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/v1\/storage"
+                            "raw": "{{baseUrl}}\/api\/api"
                         },
                         "method": "GET",
                         "header": [
@@ -65,8 +65,74 @@
                                     "value": "true"
                                 }
                             ],
-                            "code": 500,
-                            "body": "{\n    \"message\": \"Server Error\"\n}",
+                            "code": 200,
+                            "body": "BASE_URL: http:\/\/localhost:8000",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Storage Endpoints",
+            "description": "\nEndpoints for managing storage",
+            "item": [
+                {
+                    "name": "Get all storage",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/storage\/:user_uuid",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/storage\/:user_uuid",
+                            "variable": [
+                                {
+                                    "id": "user_uuid",
+                                    "key": "user_uuid",
+                                    "value": "34e3aae3-7933-3eb8-ac64-18a821a2434a",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "http:\/\/localhost:3000"
+                                },
+                                {
+                                    "key": "access-control-allow-credentials",
+                                    "value": "true"
+                                }
+                            ],
+                            "code": 404,
+                            "body": "{\"status\":404,\"success\":false,\"message\":\"User not found\"}",
                             "name": ""
                         }
                     ]
@@ -76,9 +142,17 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/v1\/storage",
+                            "path": "api\/v1\/storage\/:user_uuid",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/v1\/storage"
+                            "raw": "{{baseUrl}}\/api\/v1\/storage\/:user_uuid",
+                            "variable": [
+                                {
+                                    "id": "user_uuid",
+                                    "key": "user_uuid",
+                                    "value": "1cd895cc-1c4f-4fe4-93c3-26b35df22d80",
+                                    "description": ""
+                                }
+                            ]
                         },
                         "method": "POST",
                         "header": [
@@ -104,15 +178,21 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/v1\/storage\/:storage_id",
+                            "path": "api\/v1\/storage\/:storage_uuid\/:user_uuid",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/v1\/storage\/:storage_id",
+                            "raw": "{{baseUrl}}\/api\/v1\/storage\/:storage_uuid\/:user_uuid",
                             "variable": [
                                 {
-                                    "id": "storage_id",
-                                    "key": "storage_id",
-                                    "value": "12",
-                                    "description": "The ID of the storage."
+                                    "id": "storage_uuid",
+                                    "key": "storage_uuid",
+                                    "value": "32b83174-94b9-35cf-8e24-be209d2c25dd",
+                                    "description": ""
+                                },
+                                {
+                                    "id": "user_uuid",
+                                    "key": "user_uuid",
+                                    "value": "1cd895cc-1c4f-4fe4-93c3-26b35df22d80",
+                                    "description": ""
                                 }
                             ]
                         },
