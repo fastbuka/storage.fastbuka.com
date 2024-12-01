@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AnalogueShifts</title>
+    <title>FastBuka-Storage</title>
     <!-- TailwindCSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <!-- Heroicons for icons -->
@@ -20,7 +20,7 @@
         </div>
 
         <!-- Welcome message -->
-        <h1 class="text-2xl font-bold text-gray-800 mb-6">Welcome to AnalogueShifts!</h1>
+        <h1 class="text-2xl font-bold text-gray-800 mb-6">Welcome to FastBuka!</h1>
 
         <!-- Buttons to the different pages -->
         <div class="space-y-4">
