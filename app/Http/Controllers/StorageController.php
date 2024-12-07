@@ -89,7 +89,7 @@ class StorageController extends Controller
                 "slug" => $slug,
                 "user_uuid" => $user_uuid,
                 "base_url" => env('APP_URL'),
-                "path" => $path,
+                "path" => 'storage/'. $path,
                 "type" => $type,
                 "size" => $size,
             ]);
@@ -100,8 +100,8 @@ class StorageController extends Controller
                 'message' => 'Storage created successfully',
                 'data' => [
                     'base_url' => $storage->base_url,
-                    'path' => '/storage'. $storage->path,
-                    'url' => $storage->base_url . '/storage/' . $storage->path,
+                    'path' => $storage->path,
+                    'url' => $storage->base_url . '/' . $storage->path,
                 ]
             ]);
         } catch (\Throwable $th) {
