@@ -88,7 +88,7 @@ class StorageController extends Controller
                 "uuid" => $uuid,
                 "slug" => $slug,
                 "user_uuid" => $user_uuid,
-                "base_url" => env('AWS_URL'),
+                "base_url" => env('APP_URL'),
                 "path" => $path,
                 "type" => $type,
                 "size" => $size,
@@ -108,7 +108,7 @@ class StorageController extends Controller
             return response()->json([
                 'status' => 500,
                 'success' => false,
-                'message' => 'Internal server error, something went wrong'
+                'message' => 'Internal server error, something went wrong' . $th
             ], 500);
         }
     }
