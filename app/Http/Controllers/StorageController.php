@@ -100,8 +100,8 @@ class StorageController extends Controller
                 'message' => 'Storage created successfully',
                 'data' => [
                     'base_url' => $storage->base_url,
-                    'path' => $storage->path,
-                    'url' => $storage->base_url . '/' . $storage->path,
+                    'path' => '/storage'. $storage->path,
+                    'url' => $storage->base_url . '/storage/' . $storage->path,
                 ]
             ]);
         } catch (\Throwable $th) {
