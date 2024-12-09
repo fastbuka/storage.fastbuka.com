@@ -6,6 +6,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Validation\ValidationException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
@@ -26,6 +27,10 @@ return Application::configure(basePath: dirname(__DIR__))
             'verified' => \App\Http\Middleware\EnsureEmailIsVerified::class,
         ]);
 
+        $middleware->validateCsrfTokens(except: [
+            'api/*',
+        ]);
+        
         //
     })
     ->withExceptions(function (Exceptions $exceptions) {
@@ -84,5 +89,13 @@ return Application::configure(basePath: dirname(__DIR__))
                 'success' => false,
                 'message' => $e->getMessage(),
             ], 405);
+        });
+
+        $exceptions->render(function (HttpException $e, Request $request) {
+            return response()->json([
+                'status' => 419,
+                'success' => false,
+                'message' => $e->getMessage(),
+            ], 419);
         });
     })->create();
