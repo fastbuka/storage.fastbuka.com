@@ -25,6 +25,9 @@ class StorageController extends Controller
      */
     public function index($token)
     {
+        if (Str::startsWith($token, 'Bearer ')) {
+            $token = Str::replaceFirst('Bearer ', '', $token);
+        }
         $client = new \GuzzleHttp\Client();
         $response = $client->request('GET', 'https://api.fastbuka.com/api/v1/users/profile', [
             'headers' => [
@@ -73,6 +76,9 @@ class StorageController extends Controller
      */
     public function store(Request $request, $token)
     {
+        if (Str::startsWith($token, 'Bearer ')) {
+            $token = Str::replaceFirst('Bearer ', '', $token);
+        }
         $client = new \GuzzleHttp\Client();
         $response = $client->request('GET', 'https://api.fastbuka.com/api/v1/users/profile', [
             'headers' => [
@@ -166,6 +172,9 @@ class StorageController extends Controller
      */
     public function delete(Storage $storage, $token)
     {
+        if (Str::startsWith($token, 'Bearer ')) {
+            $token = Str::replaceFirst('Bearer ', '', $token);
+        }
         $client = new \GuzzleHttp\Client();
         $response = $client->request('GET', 'https://api.fastbuka.com/api/v1/users/profile', [
             'headers' => [
