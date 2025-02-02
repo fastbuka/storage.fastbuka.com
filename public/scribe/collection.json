@@ -9,8 +9,8 @@
         }
     ],
     "info": {
-        "name": "Storage",
-        "_postman_id": "e810eb5a-a4b8-46eb-bd79-eefd670ac22f",
+        "name": "Laravel",
+        "_postman_id": "96a76baf-88a8-4b29-b007-beaf3f7654d3",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -31,7 +31,7 @@
                                 {
                                     "id": "user_uuid",
                                     "key": "user_uuid",
-                                    "value": "4676e9a7-7ecd-3adb-8670-a1705d315d5c",
+                                    "value": "d21cf0d5-7d17-306a-a04d-8490e2017aed",
                                     "description": ""
                                 }
                             ]
@@ -65,16 +65,12 @@
                                     "value": "application\/json"
                                 },
                                 {
-                                    "key": "access-control-allow-origin",
-                                    "value": "https:\/\/fastbuka.com"
-                                },
-                                {
-                                    "key": "access-control-allow-credentials",
-                                    "value": "true"
+                                    "key": "vary",
+                                    "value": "Origin"
                                 }
                             ],
-                            "code": 404,
-                            "body": "{\"status\":404,\"success\":false,\"message\":\"User not found\"}",
+                            "code": 500,
+                            "body": "{\n    \"message\": \"Server Error\"\n}",
                             "name": ""
                         }
                     ]
@@ -91,7 +87,7 @@
                                 {
                                     "id": "user_uuid",
                                     "key": "user_uuid",
-                                    "value": "1cd895cc-1c4f-4fe4-93c3-26b35df22d80",
+                                    "value": "63309a6d-fd0c-3c56-8e9d-741be912d319",
                                     "description": ""
                                 }
                             ]
@@ -127,13 +123,13 @@
                                 {
                                     "id": "storage_uuid",
                                     "key": "storage_uuid",
-                                    "value": "12780c55-b4dd-34dc-9ce5-9bb8c469b1c4",
+                                    "value": "60176681-d6e7-3c8e-a984-2923b03b3c20",
                                     "description": ""
                                 },
                                 {
                                     "id": "user_uuid",
                                     "key": "user_uuid",
-                                    "value": "1cd895cc-1c4f-4fe4-93c3-26b35df22d80",
+                                    "value": "96b92f4a-e9f3-330a-9707-074b8229c26d",
                                     "description": ""
                                 }
                             ]

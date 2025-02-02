@@ -23,17 +23,35 @@ class StorageController extends Controller
      * @param User $user
      * @return JsonResponse
      */
-    public function index($user)
+    public function index($token)
     {
-        $authUser = User::find($user);
-        if (!$authUser) {
+        $client = new \GuzzleHttp\Client();
+        $response = $client->request('GET', 'https://api.fastbuka.com/api/v1/users/profile', [
+            'headers' => [
+                'Authorization' => 'Bearer ' . $token,
+                'Accept' => 'application/json',
+            ],
+        ]);
+
+        if ($response->getStatusCode() !== 200) {
+            return response()->json([
+                'status' => $response->getStatusCode(),
+                'success' => false,
+                'message' => 'Failed to fetch user profile'
+            ], $response->getStatusCode());
+        }
+
+        $user = json_decode($response->getBody(), true);
+        if (!$user) {
             return response()->json([
                 'status' => 404,
                 'success' => false,
                 'message' => 'User not found'
             ], 404);
         }
-        $storage = Storage::where('user_uuid', $authUser->uuid)->latest()->paginate(20);
+
+        $storage = Storage::where('user_uuid', $user->data->user->uuid)->latest()->paginate(20);
+        
         return response()->json([
             'status' => 200,
             'success' => true,
@@ -53,8 +71,32 @@ class StorageController extends Controller
      * @param User $user
      * @return JsonResponse
      */
-    public function store(Request $request, User $user)
+    public function store(Request $request, $token)
     {
+        $client = new \GuzzleHttp\Client();
+        $response = $client->request('GET', 'https://api.fastbuka.com/api/v1/users/profile', [
+            'headers' => [
+                'Authorization' => 'Bearer ' . $token,
+                'Accept' => 'application/json',
+            ],
+        ]);
+
+        if ($response->getStatusCode() !== 200) {
+            return response()->json([
+                'status' => $response->getStatusCode(),
+                'success' => false,
+                'message' => 'Failed to fetch user profile'
+            ], $response->getStatusCode());
+        }
+
+        $user = json_decode($response->getBody(), true);
+        if (!$user) {
+            return response()->json([
+                'status' => 404,
+                'success' => false,
+                'message' => 'User not found'
+            ], 404);
+        }
         try {
             $validated = $request->validate([
                 'file' => 'required|mimes:jpeg,png,jpg,gif,pdf|max:1024',
@@ -62,7 +104,7 @@ class StorageController extends Controller
 
             $uuid = Str::uuid()->toString();
             $slug = Str::random(40);
-            $user_uuid = $user->uuid;
+            $user_uuid = $user->data->user->uuid;
             $mimeType = $validated['file']->getMimeType();
             $size = $validated['file']->getSize();
 
@@ -81,7 +123,7 @@ class StorageController extends Controller
             $path = $validated['file']->storeAs(
                 env('APP_ENV') . '/' . ($type == "image" ? 'images' : 'documents'),
                 str_replace(' ', '-', $slug) . '.' . $validated['file']->getClientOriginalExtension(),
-                'public' //public, s3
+                's3' //public, s3
             );
 
             $storage = Storage::create([
@@ -122,9 +164,33 @@ class StorageController extends Controller
      * @param User $user
      * @return JsonResponse
      */
-    public function delete(Storage $storage, User $user)
+    public function delete(Storage $storage, $token)
     {
-        if ($storage->user_uuid !== $user->uuid) {
+        $client = new \GuzzleHttp\Client();
+        $response = $client->request('GET', 'https://api.fastbuka.com/api/v1/users/profile', [
+            'headers' => [
+                'Authorization' => 'Bearer ' . $token,
+                'Accept' => 'application/json',
+            ],
+        ]);
+
+        if ($response->getStatusCode() !== 200) {
+            return response()->json([
+                'status' => $response->getStatusCode(),
+                'success' => false,
+                'message' => 'Failed to fetch user profile'
+            ], $response->getStatusCode());
+        }
+
+        $user = json_decode($response->getBody(), true);
+        if (!$user) {
+            return response()->json([
+                'status' => 404,
+                'success' => false,
+                'message' => 'User not found'
+            ], 404);
+        }
+        if ($storage->user_uuid !== $user->data->user->uuid) {
             return response()->json([
                 'status' => 403,
                 'success' => false,
@@ -132,7 +198,7 @@ class StorageController extends Controller
             ], 403);
         }
         $storage->delete();
-        StorageFacade::disk('public')->delete($storage->path); //public, s3
+        StorageFacade::disk('s3')->delete($storage->path); //public, s3
         return response()->json([
             'status' => 200,
             'success' => true,

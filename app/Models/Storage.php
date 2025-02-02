@@ -6,12 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Storage extends Model
 {
-    protected $table = 'Storage';
-
-    protected $primaryKey = 'uuid';
-    public $incrementing = false; 
-    protected $keyType = 'string';
-
     protected $fillable = [
         'uuid',
         'slug',
@@ -25,9 +19,4 @@ class Storage extends Model
     protected $hidden = [
         'id',
     ];
-
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_uuid', 'uuid');
-    }
 }

@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  title: Storage
+  title: Laravel
   description: ''
   version: 1.0.0
 servers:
@@ -14,26 +14,18 @@ paths:
       description: ''
       parameters: []
       responses:
-        404:
+        500:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  status: 404
-                  success: false
-                  message: 'User not found'
+                  message: 'Server Error'
                 properties:
-                  status:
-                    type: integer
-                    example: 404
-                  success:
-                    type: boolean
-                    example: false
                   message:
                     type: string
-                    example: 'User not found'
+                    example: 'Server Error'
       tags:
         - 'Storage Endpoints'
       security: []
@@ -51,7 +43,7 @@ paths:
         in: path
         name: user_uuid
         description: ''
-        example: 4676e9a7-7ecd-3adb-8670-a1705d315d5c
+        example: d21cf0d5-7d17-306a-a04d-8490e2017aed
         required: true
         schema:
           type: string
@@ -70,15 +62,15 @@ paths:
         in: path
         name: storage_uuid
         description: ''
-        example: 12780c55-b4dd-34dc-9ce5-9bb8c469b1c4
+        example: 60176681-d6e7-3c8e-a984-2923b03b3c20
         required: true
         schema:
-          type: string
+          type: integer
       -
         in: path
         name: user_uuid
         description: ''
-        example: 1cd895cc-1c4f-4fe4-93c3-26b35df22d80
+        example: 96b92f4a-e9f3-330a-9707-074b8229c26d
         required: true
         schema:
           type: string
