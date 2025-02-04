@@ -22,14 +22,23 @@ class StorageController extends Controller
      * 
      * @param User $user
      * @return JsonResponse
+     * 
+     * @queryParam env Example api, dev
      */
-    public function index($token)
+    public function index(Request $request, $token)
     {
+        $env = $request->query('env');
+        if($env && $env === 'dev'){
+            $env = env('DEV_BASE');
+        }else{
+            $env = env('API_BASE');
+        }
+
         if (Str::startsWith($token, 'Bearer ')) {
             $token = Str::replaceFirst('Bearer ', '', $token);
         }
         $client = new \GuzzleHttp\Client();
-        $response = $client->request('GET', 'https://api.fastbuka.com/api/v1/users/profile', [
+        $response = $client->request('GET', $env . '/api/v1/users/profile', [
             'headers' => [
                 'Authorization' => 'Bearer ' . $token,
                 'Accept' => 'application/json',
@@ -73,14 +82,23 @@ class StorageController extends Controller
      * @param Request $request
      * @param User $user
      * @return JsonResponse
+     * 
+     * @queryParam env Example api, dev
      */
     public function store(Request $request, $token)
     {
+        $env = $request->query('env');
+        if($env && $env === 'dev'){
+            $env = env('DEV_BASE');
+        }else{
+            $env = env('API_BASE');
+        }
+
         if (Str::startsWith($token, 'Bearer ')) {
             $token = Str::replaceFirst('Bearer ', '', $token);
         }
         $client = new \GuzzleHttp\Client();
-        $response = $client->request('GET', 'https://api.fastbuka.com/api/v1/users/profile', [
+        $response = $client->request('GET', $env . '/api/v1/users/profile', [
             'headers' => [
                 'Authorization' => 'Bearer ' . $token,
                 'Accept' => 'application/json',
@@ -169,14 +187,23 @@ class StorageController extends Controller
      * @param Storage $storage
      * @param User $user
      * @return JsonResponse
+     * 
+     * @queryParam env Example api, dev
      */
-    public function delete(Storage $storage, $token)
+    public function delete(Request $request, Storage $storage, $token)
     {
+        $env = $request->query('env');
+        if($env && $env === 'dev'){
+            $env = env('DEV_BASE');
+        }else{
+            $env = env('API_BASE');
+        }
+
         if (Str::startsWith($token, 'Bearer ')) {
             $token = Str::replaceFirst('Bearer ', '', $token);
         }
         $client = new \GuzzleHttp\Client();
-        $response = $client->request('GET', 'https://api.fastbuka.com/api/v1/users/profile', [
+        $response = $client->request('GET', $env . '/api/v1/users/profile', [
             'headers' => [
                 'Authorization' => 'Bearer ' . $token,
                 'Accept' => 'application/json',

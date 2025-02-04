@@ -7,8 +7,8 @@ Route::get('/', function () {
     return response('BASE_URL: ' . env('APP_URL'));
 });
 
-Route::prefix('v1/storage')->group(function () {
-    Route::get('/{user:uuid}', [StorageController::class, 'index']);
-    Route::post('/{user:uuid}', [StorageController::class, 'store']);
-    Route::delete('/{storage:uuid}/{user:uuid}', [StorageController::class, 'delete']);
+Route::prefix('v1/storage/{token}')->group(function () {
+    Route::get('/', [StorageController::class, 'index']);
+    Route::post('/', [StorageController::class, 'store']);
+    Route::delete('/{storage:uuid}', [StorageController::class, 'delete']);
 });

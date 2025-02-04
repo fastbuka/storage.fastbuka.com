@@ -7,12 +7,23 @@ servers:
   -
     url: 'https://storage.fastbuka.com'
 paths:
-  '/api/v1/storage/{user_uuid}':
+  '/api/v1/storage/{token}':
     get:
       summary: 'Get all storage'
       operationId: getAllStorage
       description: ''
-      parameters: []
+      parameters:
+        -
+          in: query
+          name: env
+          description: 'Example api, dev'
+          example: dolorem
+          required: false
+          schema:
+            type: string
+            description: 'Example api, dev'
+            example: dolorem
+            nullable: false
       responses:
         500:
           description: ''
@@ -33,7 +44,18 @@ paths:
       summary: 'Store a new storage'
       operationId: storeANewStorage
       description: ''
-      parameters: []
+      parameters:
+        -
+          in: query
+          name: env
+          description: 'Example api, dev'
+          example: et
+          required: false
+          schema:
+            type: string
+            description: 'Example api, dev'
+            example: et
+            nullable: false
       responses: {  }
       tags:
         - 'Storage Endpoints'
@@ -41,18 +63,29 @@ paths:
     parameters:
       -
         in: path
-        name: user_uuid
+        name: token
         description: ''
-        example: d21cf0d5-7d17-306a-a04d-8490e2017aed
+        example: omnis
         required: true
         schema:
           type: string
-  '/api/v1/storage/{storage_uuid}/{user_uuid}':
+  '/api/v1/storage/{token}/{storage_uuid}':
     delete:
       summary: 'Delete a storage'
       operationId: deleteAStorage
       description: ''
-      parameters: []
+      parameters:
+        -
+          in: query
+          name: env
+          description: 'Example api, dev'
+          example: nobis
+          required: false
+          schema:
+            type: string
+            description: 'Example api, dev'
+            example: nobis
+            nullable: false
       responses: {  }
       tags:
         - 'Storage Endpoints'
@@ -60,17 +93,17 @@ paths:
     parameters:
       -
         in: path
-        name: storage_uuid
+        name: token
         description: ''
-        example: 60176681-d6e7-3c8e-a984-2923b03b3c20
+        example: 8
         required: true
         schema:
           type: integer
       -
         in: path
-        name: user_uuid
+        name: storage_uuid
         description: ''
-        example: 96b92f4a-e9f3-330a-9707-074b8229c26d
+        example: 9cbc8977-6f69-35a6-a414-825ec6a30c71
         required: true
         schema:
           type: string

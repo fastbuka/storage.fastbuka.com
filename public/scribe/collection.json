@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "96a76baf-88a8-4b29-b007-beaf3f7654d3",
+        "_postman_id": "e6b67691-ba17-43d1-bbe3-f0d657204e8c",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -24,14 +24,21 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/v1\/storage\/:user_uuid",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/v1\/storage\/:user_uuid",
+                            "path": "api\/v1\/storage\/:token",
+                            "query": [
+                                {
+                                    "key": "env",
+                                    "value": "dolorem",
+                                    "description": "Example api, dev",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/v1\/storage\/:token?env=dolorem",
                             "variable": [
                                 {
-                                    "id": "user_uuid",
-                                    "key": "user_uuid",
-                                    "value": "d21cf0d5-7d17-306a-a04d-8490e2017aed",
+                                    "id": "token",
+                                    "key": "token",
+                                    "value": "omnis",
                                     "description": ""
                                 }
                             ]
@@ -80,14 +87,21 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/v1\/storage\/:user_uuid",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/v1\/storage\/:user_uuid",
+                            "path": "api\/v1\/storage\/:token",
+                            "query": [
+                                {
+                                    "key": "env",
+                                    "value": "et",
+                                    "description": "Example api, dev",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/v1\/storage\/:token?env=et",
                             "variable": [
                                 {
-                                    "id": "user_uuid",
-                                    "key": "user_uuid",
-                                    "value": "63309a6d-fd0c-3c56-8e9d-741be912d319",
+                                    "id": "token",
+                                    "key": "token",
+                                    "value": "sapiente",
                                     "description": ""
                                 }
                             ]
@@ -116,20 +130,27 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/v1\/storage\/:storage_uuid\/:user_uuid",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/v1\/storage\/:storage_uuid\/:user_uuid",
+                            "path": "api\/v1\/storage\/:token\/:storage_uuid",
+                            "query": [
+                                {
+                                    "key": "env",
+                                    "value": "nobis",
+                                    "description": "Example api, dev",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/v1\/storage\/:token\/:storage_uuid?env=nobis",
                             "variable": [
                                 {
-                                    "id": "storage_uuid",
-                                    "key": "storage_uuid",
-                                    "value": "60176681-d6e7-3c8e-a984-2923b03b3c20",
+                                    "id": "token",
+                                    "key": "token",
+                                    "value": "8",
                                     "description": ""
                                 },
                                 {
-                                    "id": "user_uuid",
-                                    "key": "user_uuid",
-                                    "value": "96b92f4a-e9f3-330a-9707-074b8229c26d",
+                                    "id": "storage_uuid",
+                                    "key": "storage_uuid",
+                                    "value": "9cbc8977-6f69-35a6-a414-825ec6a30c71",
                                     "description": ""
                                 }
                             ]
