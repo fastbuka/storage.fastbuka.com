@@ -37,23 +37,28 @@ class StorageController extends Controller
         if (Str::startsWith($token, 'Bearer ')) {
             $token = Str::replaceFirst('Bearer ', '', $token);
         }
-        $client = new \GuzzleHttp\Client();
-        $response = $client->request('GET', $env . '/api/v1/users/profile', [
-            'headers' => [
-                'Authorization' => 'Bearer ' . $token,
-                'Accept' => 'application/json',
-            ],
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $env . '/api/v1/users/profile');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            'Authorization: Bearer ' . $token,
+            'Accept: application/json',
         ]);
 
-        if ($response->getStatusCode() !== 200) {
+        $response = curl_exec($ch);
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        curl_close($ch);
+
+        if ($httpCode !== 200) {
             return response()->json([
-                'status' => $response->getStatusCode(),
+                'status' => $httpCode,
                 'success' => false,
                 'message' => 'Failed to fetch user profile'
-            ], $response->getStatusCode());
+            ], $httpCode);
         }
 
-        $user = json_decode($response->getBody(), true);
+        $user = json_decode($response, true);
         if (!$user) {
             return response()->json([
                 'status' => 404,
@@ -62,7 +67,7 @@ class StorageController extends Controller
             ], 404);
         }
 
-        $storage = Storage::where('user_uuid', $user->data->user->uuid)->latest()->paginate(20);
+        $storage = Storage::where('user_uuid', $user['data']['user']['uuid'])->latest()->paginate(20);
         
         return response()->json([
             'status' => 200,
@@ -97,23 +102,28 @@ class StorageController extends Controller
         if (Str::startsWith($token, 'Bearer ')) {
             $token = Str::replaceFirst('Bearer ', '', $token);
         }
-        $client = new \GuzzleHttp\Client();
-        $response = $client->request('GET', $env . '/api/v1/users/profile', [
-            'headers' => [
-                'Authorization' => 'Bearer ' . $token,
-                'Accept' => 'application/json',
-            ],
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $env . '/api/v1/users/profile');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            'Authorization: Bearer ' . $token,
+            'Accept: application/json',
         ]);
 
-        if ($response->getStatusCode() !== 200) {
+        $response = curl_exec($ch);
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        curl_close($ch);
+
+        if ($httpCode !== 200) {
             return response()->json([
-                'status' => $response->getStatusCode(),
+                'status' => $httpCode,
                 'success' => false,
                 'message' => 'Failed to fetch user profile'
-            ], $response->getStatusCode());
+            ], $httpCode);
         }
 
-        $user = json_decode($response->getBody(), true);
+        $user = json_decode($response, true);
         if (!$user) {
             return response()->json([
                 'status' => 404,
@@ -128,7 +138,7 @@ class StorageController extends Controller
 
             $uuid = Str::uuid()->toString();
             $slug = Str::random(40);
-            $user_uuid = $user->data->user->uuid;
+            $user_uuid = $user['data']['user']['uuid'];
             $mimeType = $validated['file']->getMimeType();
             $size = $validated['file']->getSize();
 
@@ -145,7 +155,7 @@ class StorageController extends Controller
             }
 
             $path = $validated['file']->storeAs(
-                env('APP_ENV') . '/' . ($type == "image" ? 'images' : 'documents'),
+                $env . '/' . ($type == "image" ? 'images' : 'documents'),
                 str_replace(' ', '-', $slug) . '.' . $validated['file']->getClientOriginalExtension(),
                 's3' //public, s3
             );
@@ -202,23 +212,28 @@ class StorageController extends Controller
         if (Str::startsWith($token, 'Bearer ')) {
             $token = Str::replaceFirst('Bearer ', '', $token);
         }
-        $client = new \GuzzleHttp\Client();
-        $response = $client->request('GET', $env . '/api/v1/users/profile', [
-            'headers' => [
-                'Authorization' => 'Bearer ' . $token,
-                'Accept' => 'application/json',
-            ],
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $env . '/api/v1/users/profile');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            'Authorization: Bearer ' . $token,
+            'Accept: application/json',
         ]);
 
-        if ($response->getStatusCode() !== 200) {
+        $response = curl_exec($ch);
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        curl_close($ch);
+
+        if ($httpCode !== 200) {
             return response()->json([
-                'status' => $response->getStatusCode(),
+                'status' => $httpCode,
                 'success' => false,
                 'message' => 'Failed to fetch user profile'
-            ], $response->getStatusCode());
+            ], $httpCode);
         }
 
-        $user = json_decode($response->getBody(), true);
+        $user = json_decode($response, true);
         if (!$user) {
             return response()->json([
                 'status' => 404,
@@ -226,7 +241,7 @@ class StorageController extends Controller
                 'message' => 'User not found'
             ], 404);
         }
-        if ($storage->user_uuid !== $user->data->user->uuid) {
+        if ($storage->user_uuid !== $user['data']['user']['uuid']) {
             return response()->json([
                 'status' => 403,
                 'success' => false,
